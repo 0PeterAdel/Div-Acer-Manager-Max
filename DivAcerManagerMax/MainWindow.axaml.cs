@@ -128,6 +128,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     {
         BindControls();
         AttachEventHandlers();
+        InitializeWallpaperPalette();
         InitializeAsync();
     }
 
@@ -263,6 +264,8 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private void UpdateUIElementVisibility()
     {
         if (_settings == null) return;
+
+        UpdateWallpaperPaletteAvailability();
 
         var nameScope = this.FindNameScope();
         var thermalProfilePanel = nameScope.Find<Border>("ThermalProfilePanel");
@@ -1005,7 +1008,6 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             if (mode == 0)
             {
                 var rgb = ToRgbHex(color);
-
                 var success = await _client.SetPerZoneModeAsync(
                     rgb,
                     rgb,

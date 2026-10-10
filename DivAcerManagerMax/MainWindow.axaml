@@ -296,6 +296,30 @@
                             <TextBlock Text="Keyboard Lighting" Classes="SectionHeader" />
                             <TextBlock Text="This Section Requires Testing." Foreground="#FFA500" Margin="0 0 0 10" />
 
+                            <Border Classes="Card" x:Name="WallpaperPalettePanel">
+                                <StackPanel Spacing="10">
+                                    <TextBlock Text="Wallpaper Colors" Classes="SubHeader" />
+                                    <TextBlock Text="Choose a prominent color from your wallpaper for static lighting."
+                                               Opacity="0.7" TextWrapping="Wrap" />
+                                    <WrapPanel>
+                                        <Button x:Name="ReadWallpaperButton" Content="Use Current Wallpaper" Margin="0,0,10,5" />
+                                        <Button x:Name="ChooseWallpaperImageButton" Content="Choose Image…" Margin="0,0,0,5" />
+                                    </WrapPanel>
+                                    <Image x:Name="WallpaperPreview" Height="110" Width="240"
+                                           HorizontalAlignment="Left" Stretch="UniformToFill" IsVisible="False" />
+                                    <TextBlock x:Name="WallpaperSourceText" Opacity="0.7" TextWrapping="Wrap" />
+                                    <TextBlock x:Name="WallpaperPaletteStatus" Text="Read your wallpaper or choose an image."
+                                               TextWrapping="Wrap" />
+                                    <WrapPanel x:Name="WallpaperColorSwatches" />
+                                    <WrapPanel VerticalAlignment="Center">
+                                        <ComboBox x:Name="WallpaperLightingTarget" Width="210" Margin="0,0,10,5"
+                                                  PlaceholderText="Apply color to…" />
+                                        <Button x:Name="ApplyWallpaperColorButton" Content="Apply Static Color"
+                                                IsEnabled="False" Margin="0,0,0,5" />
+                                    </WrapPanel>
+                                </StackPanel>
+                            </Border>
+
                             <!-- Zone Color Control -->
 
 

@@ -16,3 +16,10 @@ DAMM-Daemon/build/
 DAMM-Daemon/dist/
 
 DAMM-Daemon/__pycache__/
+
+**/bin/
+**/obj/
+**/.venv/
+**/venv/
+*.log
+*.backup*

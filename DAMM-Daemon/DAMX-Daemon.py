@@ -831,7 +831,7 @@ class DAMXManager:
 
         return self._write_file(
             os.path.join(self.base_path, "fan_speed"),
-            f"{cpu},{gpu}"
+            f"{cpu},{gpu}\n"
         )
 
 
