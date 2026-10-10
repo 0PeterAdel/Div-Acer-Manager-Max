@@ -186,7 +186,7 @@ jobs:
         
         chmod +x "${{ env.package_dir }}/setup.sh"
         echo "✓ Setup script updated and made executable"
-        
+
         # Copy nitro key detection script alongside setup.sh
         if [ -f "Div-Acer-Manager-Max/scripts/nitro-key-detection.sh" ]; then
           cp "Div-Acer-Manager-Max/scripts/nitro-key-detection.sh" "${{ env.package_dir }}/"

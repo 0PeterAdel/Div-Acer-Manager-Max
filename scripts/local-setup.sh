@@ -180,39 +180,39 @@ comprehensive_cleanup() {
 # Function to clean up nitro key detection service
 cleanup_nitro_service() {
   echo -e "${YELLOW}Cleaning up Nitro Key Detection Service...${NC}"
-  
+
   NITRO_SERVICE_NAME="nitro-key-detection.service"
-  
+
   # Stop the service if it's running
   if systemctl is-active --quiet ${NITRO_SERVICE_NAME} 2>/dev/null; then
     echo "Stopping ${NITRO_SERVICE_NAME}..."
     systemctl stop ${NITRO_SERVICE_NAME}
   fi
-  
+
   # Disable the service if it's enabled
   if systemctl is-enabled --quiet ${NITRO_SERVICE_NAME} 2>/dev/null; then
     echo "Disabling ${NITRO_SERVICE_NAME}..."
     systemctl disable ${NITRO_SERVICE_NAME}
   fi
-  
+
   # Remove the service file
   if [ -f "${SYSTEMD_DIR}/${NITRO_SERVICE_NAME}" ]; then
     echo "Removing ${NITRO_SERVICE_NAME} file..."
     rm -f "${SYSTEMD_DIR}/${NITRO_SERVICE_NAME}"
   fi
-  
+
   # Remove the nitro key detection script
   if [ -f "/usr/local/bin/nitro-key-detection.sh" ]; then
     echo "Removing nitro-key-detection.sh script..."
     rm -f "/usr/local/bin/nitro-key-detection.sh"
   fi
-  
+
   # Remove nitro key configuration
   if [ -f "/etc/damx/nitro_key.conf" ]; then
     echo "Removing nitro_key.conf configuration..."
     rm -f "/etc/damx/nitro_key.conf"
   fi
-  
+
   echo -e "${GREEN}Nitro Key Detection Service cleanup completed.${NC}"
 }
 
@@ -613,7 +613,7 @@ configure_nitro_button() {
   # it even sends the same code as the Nitro key on the models tested so far.
   echo -e "${YELLOW}Do you want to setup your Nitro/PredatorSense Key? (y/N) - Waiting 10 seconds...${NC}"
   read -t 10 -n 1 -r response
-  
+
   # Default to No if timeout or empty response
   if [[ $? -ne 0 ]] || [[ -z "$response" ]]; then
     echo -e "\n${BLUE}No response detected. Skipping Nitro button setup.${NC}"
@@ -641,7 +641,7 @@ configure_nitro_button() {
   fi
 
   DEVICE=$(grep -A 5 -B 5 "AT Translated Set 2 keyboard" /proc/bus/input/devices | grep -m 1 "event" | sed 's/.*event\([0-9]\+\).*/\/dev\/input\/event\1/')
-  
+
   mkdir -p /etc/damx
 
   if [ -z "$DEVICE" ]; then
@@ -669,7 +669,7 @@ configure_nitro_button() {
     echo -e "${YELLOW}remapper's own config instead.${NC}"
     echo "NITRO_KEY=425" > /etc/damx/nitro_key.conf
   fi
-  
+
   # Install NitroKeyDetection.sh as a service
   install_nitro_service
 }
@@ -694,10 +694,10 @@ detect_desktop_user() {
 
 install_nitro_service() {
   echo -e "${YELLOW}Installing Nitro Key Detection Service...${NC}"
-  
+
     # First, remove any existing installation
   # cleanup_nitro_service
-  
+
   # Get the directory where the main script is located
   SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
   NITRO_SCRIPT="$SCRIPT_DIR/nitro-key-detection.sh"
@@ -709,20 +709,20 @@ install_nitro_service() {
   fi
 
   echo -e "${BLUE}The button will launch DAMX for user: ${TARGET_USER}${NC}"
-  
+
   # Check if NitroKeyDetection.sh exists
   if [ ! -f "$NITRO_SCRIPT" ]; then
     echo -e "${RED}Error: NitroKeyDetection.sh not found in $SCRIPT_DIR${NC}"
     return 1
   fi
-  
+
   # Make the script executable
   chmod +x "$NITRO_SCRIPT"
-  
+
   # Copy script to /usr/local/bin
   cp "$NITRO_SCRIPT" /usr/local/bin/
   chmod +x "/usr/local/bin/nitro-key-detection.sh"
-  
+
   # Create systemd service file
   cat > /etc/systemd/system/nitro-key-detection.service << EOF
 [Unit]
@@ -748,7 +748,7 @@ EOF
   systemctl daemon-reload
   systemctl enable nitro-key-detection.service
   systemctl start nitro-key-detection.service
-  
+
   # Check if service is running
   if systemctl is-active --quiet nitro-key-detection.service; then
     echo -e "${GREEN}✓ Nitro Key Detection Service installed and running successfully!${NC}"
@@ -758,7 +758,7 @@ EOF
     journalctl -u nitro-key-detection.service -n 10 --no-pager
     return 1
   fi
-  
+
   echo -e "${BLUE}Service commands:${NC}"
   echo -e "  Start: systemctl start nitro-key-detection.service"
   echo -e "  Stop:  systemctl stop nitro-key-detection.service"
