@@ -62,7 +62,18 @@ Check your device's compatibility here: [Compatibility List](https://github.com/
 
 > Even if not here, DAMX will still work on most devices. Please file a issue on Linuwu-sense page (it will be ignored here)
 
-## 🖥️ DAMX Installation Guide
+## Installing this fork
+
+For the combined Static lighting fix, back logo/lightbar controls and wallpaper
+colors, use [the fork source installer](docs/FORK-SETUP.md). It builds the GUI,
+daemon and driver from **0PeterAdel's two `main` branches** after both integration
+PRs are merged. Use the same command for later updates:
+
+```bash
+bash scripts/setup-fork.sh
+```
+
+## 🖥️ Upstream Release Installation Guide
 
 1. Download the latest release from the **[Releases](https://github.com/PXDiv/Div-Acer-Manager-Max/releases)** section.
 
