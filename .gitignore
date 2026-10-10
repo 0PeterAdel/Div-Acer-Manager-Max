@@ -21,5 +21,6 @@ DAMM-Daemon/__pycache__/
 **/obj/
 **/.venv/
 **/venv/
+**/__pycache__/
 *.log
 *.backup*
