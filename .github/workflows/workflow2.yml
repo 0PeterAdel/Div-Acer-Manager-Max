@@ -45,7 +45,7 @@ jobs:
           git clone https://github.com/0x7375646F/Linuwu-Sense.git drivers-temp
         else
           echo "Downloading Div-Linuwu-Sense drivers..."
-          git clone https://github.com/PXDiv/Div-Linuwu-Sense.git drivers-temp
+          git clone --branch main "https://github.com/${GITHUB_REPOSITORY_OWNER}/Div-Linuwu-Sense.git" drivers-temp
         fi
         
         echo "✓ Drivers repository cloned successfully"
@@ -63,7 +63,7 @@ jobs:
     
     - name: Install PyInstaller
       run: |
-        pip install pyinstaller
+        pip install -r Div-Acer-Manager-Max/DAMM-Daemon/requirements-build.txt
     
     - name: Detect versions from source files
       id: versions

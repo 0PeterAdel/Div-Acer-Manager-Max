@@ -8,8 +8,8 @@ SYSTEMD_DIR="/etc/systemd/system"
 DAEMON_SERVICE_NAME="damx-daemon.service"
 DESKTOP_FILE_DIR="/usr/share/applications"
 ICON_DIR="/usr/share/icons/hicolor/256x256/apps"
-LINUWU_SENSE_REPO="0x7375646F/Linuwu-Sense"
-DAMX_REPO="PXDiv/Div-Acer-Manager-Max"
+LINUWU_SENSE_REPO="0PeterAdel/Div-Linuwu-Sense"
+DAMX_REPO="0PeterAdel/Div-Acer-Manager-Max"
 MODULE_SIGNING_DIR="/var/lib/damx/secureboot"
 MODULE_SIGNING_KEY="${MODULE_SIGNING_DIR}/DAMX-MOK.priv"
 MODULE_SIGNING_CERT="${MODULE_SIGNING_DIR}/DAMX-MOK.der"
@@ -418,7 +418,7 @@ clone_and_install_linuwu_sense() {
 
   echo -e "${YELLOW}Cloning and installing Linuwu-Sense drivers...${NC}"
   rm -rf Linuwu-Sense
-  if ! git clone --depth=1 "https://github.com/${LINUWU_SENSE_REPO}.git"; then
+  if ! git clone --depth=1 --branch main "https://github.com/${LINUWU_SENSE_REPO}.git" Linuwu-Sense; then
     echo -e "${RED}Failed to clone Linuwu-Sense repo!${NC}"
     pause
     return 1

@@ -26,6 +26,9 @@ The script keeps managed clones in `~/.local/share/damx/sources` (respecting
 with a fast-forward merge; it never switches branches or discards local edits.
 Repeat the same command after merging future changes. Releases published by
 the upstream repository do not include unmerged changes from this fork.
+The packaging workflow also selects the driver's `main` branch from the same
+GitHub owner. The legacy release installers point to `0PeterAdel` and require
+a release published in this fork; the source installer does not require one.
 
 For local development, build and reinstall your own source trees directly:
 

@@ -73,9 +73,9 @@ PRs are merged. Use the same command for later updates:
 bash scripts/setup-fork.sh
 ```
 
-## 🖥️ Upstream Release Installation Guide
+## 🖥️ Packaged Release Installation Guide
 
-1. Download the latest release from the **[Releases](https://github.com/PXDiv/Div-Acer-Manager-Max/releases)** section.
+1. After publishing a release of this fork, download it from **[Releases](https://github.com/0PeterAdel/Div-Acer-Manager-Max/releases)**. Otherwise, use the source installer above.
 
 2. Extract the downloaded package.
 
